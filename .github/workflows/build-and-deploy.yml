@@ -16,7 +16,7 @@ jobs:
         
       # Step 4: Build Docker Image for Web App
       - name: Build Docker Image
-        run: docker build -t ashishpieshop-web-app:latest .
+        run: docker build -t ashishtvaghela/ashishpieshop-web-app:latest .
 
       # Step 5: Log in to Docker Hub
       - name: Log in to Docker Hub
