@@ -6,3 +6,19 @@ When you check out, you see a order form to fill out the details and your order 
 This application is developed in **ASP.NET Core 5 MVC C#**. **Entitiy Framework** is used here for data modeling. 
 - Shopping cart system is developed. **Authorization and Authentication** like user Register and user login are done using **.NET Core Identity**. 
 - At least one reviewer is required to approve the pull request before merging the changes in. YAML file will also be added as **Continous Integration (CI)** of project to build and test .NET solution.
+
+Project Structure
+
+├── .github
+
+│   └── workflows
+
+│       └── build-and-deploy.yml   # GitHub Actions workflow
+
+├── init.sql                       # SQL initialization script
+
+├── docker-compose.yml             # Docker Compose configuration
+
+├── Dockerfile                     # Dockerfile for .NET app
+
+├── src/                           # .NET project source code

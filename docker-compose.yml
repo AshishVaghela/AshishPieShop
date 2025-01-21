@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver-container
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "MySQLServer1!"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql # Mount the init.sql file
+    ports:
+      - "1433:1433"
+
+  webapp:
+    image: ashishtvaghela/ashishpieshop-web-app:latest
+    container_name: dotnet-webapp
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - sqlserver
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=AshishsPieShop;User=sa;Password=MySQLServer1!;"
+
+volumes:
+  sqlserver-data:
