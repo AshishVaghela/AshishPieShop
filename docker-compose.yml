@@ -13,7 +13,7 @@ services:
     ports:
       - "1433:1433"
 
-  webapp:
+  ashishpieshop-web-app:
     image: ashishtvaghela/ashishpieshop-web-app:latest
     container_name: dotnet-webapp
     ports:
