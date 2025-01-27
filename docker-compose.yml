@@ -1,5 +1,8 @@
 version: '3.8'
 
+networks:
+  ashishpieshopnetwork:
+
 services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -7,11 +10,16 @@ services:
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "MySQLServer1!"
+    networks:
+      - ashishpieshopnetwork
     volumes:
       - sqlserver-data:/var/opt/mssql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql # Mount the init.sql file
     ports:
       - "1433:1433"
+    healthcheck:
+        test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P MySQLServer1! -C -Q 'SELECT 1'"]
+        interval: 10s
+        retries: 5
 
   ashishpieshop-web-app:
     image: ashishtvaghela/ashishpieshop-web-app:latest
@@ -22,7 +30,9 @@ services:
     depends_on:
       - sqlserver
     environment:
-      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=AshishsPieShop;User=sa;Password=MySQLServer1!;"
+      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=AshishPieShop;User Id=sa;Password=MySQLServer1!;Encrypt=False;TrustServerCertificate=True;"
+    networks:
+      - ashishpieshopnetwork
 
 volumes:
   sqlserver-data:
