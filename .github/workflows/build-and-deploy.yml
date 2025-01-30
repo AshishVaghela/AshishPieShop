@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - testCICDWithDocker  # Trigger the workflow on pushes to the specified branch
+      - master  # Trigger the workflow on pushes to the specified branch
 
 jobs:
   build-and-deploy:

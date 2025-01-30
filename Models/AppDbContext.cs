@@ -4,14 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AshishPieShop.Models
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
