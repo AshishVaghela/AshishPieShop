@@ -15,8 +15,6 @@ Project Structure
 
 │       └── build-and-deploy.yml   # GitHub Actions workflow
 
-├── init.sql                       # SQL initialization script
-
 ├── docker-compose.yml             # Docker Compose configuration
 
 ├── Dockerfile                     # Dockerfile for .NET app
